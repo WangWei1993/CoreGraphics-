@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  直线、矩形、圆、弧的绘制和进度条绘制
+//  CoreGraphics基础
 //
 //  Created by 王伟 on 2017/4/17.
 //  Copyright © 2017年 王伟. All rights reserved.

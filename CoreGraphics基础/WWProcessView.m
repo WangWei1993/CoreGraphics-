@@ -83,29 +83,12 @@
     // 扇形
     
     // 进度条
+    // [self drawProcessViewRect:rect];
     
-    // 1获取图形上下文
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    // 饼图
     
-    // 2绘制path
-    CGPoint centerPoint = CGPointMake(rect.size.width * 0.5, rect.size.height * 0.5);
-    CGFloat radius = rect.size.width * 0.4;
-    CGFloat startAngle = -M_PI_2;
-    CGFloat endAngle = startAngle + M_PI * 2 * _processValue;
-    BOOL clockwise = YES;
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
     
-    // 设置图形上下文参数
-    CGContextSetLineWidth(ctx, 10);
-    
-    // 3将path添加到图形上下文
-    CGContextAddPath(ctx, path.CGPath);
-    
-    // 4渲染图形上下文到View的Layer
-    CGContextStrokePath(ctx);
-    
-    // [path stroke];
-    
+
 }
 
 // 直线
@@ -180,7 +163,7 @@
 }
 
 // 圆形
-- (void)drawOvalInRec:(CGRect)rect {
+- (void)drawOvalInRect:(CGRect)rect {
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(rect.size.width * 0.5, rect.size.height * 0.5, 50, 50)];
     [[UIColor redColor] set];
     [path setLineWidth:10];
@@ -191,7 +174,7 @@
     [path stroke];
 }
 
-- (void)drawQuadCurveRec:(CGRect)rect {
+- (void)drawQuadCurveRect:(CGRect)rect {
     // 1 获取图形上下文
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     // 2 画线路
@@ -210,7 +193,7 @@
 }
 
 // 扇形
-- (void)drawShanxingRec:(CGRect)rect {
+- (void)drawShanxingRect:(CGRect)rect {
     CGPoint centerPoint = CGPointMake(rect.size.width * 0.5, rect.size.height * 0.5);
     CGFloat radius = 100;
     CGFloat startAngle = 0;
@@ -226,6 +209,29 @@
     // [path closePath];
     
     [path fill];
+}
+
+// 进度条
+- (void)drawProcessViewRect:(CGRect)rect {
+
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    // 2绘制path
+    CGPoint centerPoint = CGPointMake(rect.size.width * 0.5, rect.size.height * 0.5);
+    CGFloat radius = rect.size.width * 0.4;
+    CGFloat startAngle = -M_PI_2;
+    CGFloat endAngle = startAngle + M_PI * 2 * _processValue;
+    BOOL clockwise = YES;
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
+    
+    // 设置图形上下文参数
+    CGContextSetLineWidth(ctx, 10);
+    
+    // 3将path添加到图形上下文
+    CGContextAddPath(ctx, path.CGPath);
+    
+    // 4渲染图形上下文到View的Layer
+    CGContextStrokePath(ctx);
 }
 
 
