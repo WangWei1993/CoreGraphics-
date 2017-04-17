@@ -71,24 +71,30 @@
 - (void)drawRect:(CGRect)rect {
 
     // 直线
+    //[self drawLineRect:rect];
     
     // 折线（拐角处理）
+    //[self drawLineLineRect:rect];
     
     // 矩形\圆角矩形
+    //[self drawRectRect:rect];
     
-    // 圆形
+    // 圆形\椭圆
+    //[self drawOvalInRect:rect];
     
     // 曲线 (由控制点进行控制)
+    [self drawQuadCurveRect:rect];
 
     // 扇形
+    //[self drawFanRect:rect];
     
     // 进度条
-    // [self drawProcessViewRect:rect];
+    //[self drawProcessViewRect:rect];
     
     // 饼图
+    //[self drawPieRect:rect];
     
     
-
 }
 
 // 直线
@@ -99,7 +105,7 @@
     // 2绘制path
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(10, 100)];
-    [path addLineToPoint:CGPointMake(50, 100)];
+    [path addLineToPoint:CGPointMake(50, 200)];
     
     // 设置上下文状态
     CGContextSetLineWidth(ctx, 10);// 设置宽度
@@ -154,7 +160,7 @@
      [path stroke]
      */
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(50, 50, 100, 100) cornerRadius:50];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(50, 50, 100, 100) cornerRadius:10];
     [path setLineWidth:10];
     [path stroke];
     
@@ -164,7 +170,7 @@
 
 // 圆形
 - (void)drawOvalInRect:(CGRect)rect {
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(rect.size.width * 0.5, rect.size.height * 0.5, 50, 50)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(rect.size.width * 0.5, rect.size.height * 0.5, rect.size.width * 0.5, rect.size.width * 0.5)];
     [[UIColor redColor] set];
     [path setLineWidth:10];
     
@@ -174,6 +180,7 @@
     [path stroke];
 }
 
+// 曲线
 - (void)drawQuadCurveRect:(CGRect)rect {
     // 1 获取图形上下文
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -184,6 +191,8 @@
     // 添加曲线的终点个控制点
     [path addQuadCurveToPoint:CGPointMake(100, 100) controlPoint:CGPointMake(60, 0)];
     
+    CGContextSetLineWidth(ctx, 10);
+    
     // 3 将线路添加到图形上下文中
     CGContextAddPath(ctx, path.CGPath);
     
@@ -193,7 +202,7 @@
 }
 
 // 扇形
-- (void)drawShanxingRect:(CGRect)rect {
+- (void)drawFanRect:(CGRect)rect {
     CGPoint centerPoint = CGPointMake(rect.size.width * 0.5, rect.size.height * 0.5);
     CGFloat radius = 100;
     CGFloat startAngle = 0;
@@ -232,6 +241,53 @@
     
     // 4渲染图形上下文到View的Layer
     CGContextStrokePath(ctx);
+}
+
+// 扇形
+- (void)drawPieRect:(CGRect)rect {
+    // 设定服务器传进的数组
+    NSArray *dataArr = @[@23,@25,@12,@13,@10,@17];
+    
+    CGPoint centerPoint = CGPointMake(rect.size.width * 0.5, rect.size.height * 0.5);
+    CGFloat radius = rect.size.width * 0.4; // 半径
+    CGFloat startAngle = 0;// 开始角度
+    CGFloat angle = 0;     // 角度变化值
+    CGFloat endAngle = 0;  // 结束角度
+    BOOL clockwise = YES;  // 是否是顺时针
+    
+    for (NSNumber *num in dataArr) {
+        
+        startAngle = endAngle;
+        
+        angle = num.integerValue / 100.0 * M_PI * 2;
+        
+        endAngle = startAngle + angle;
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
+        
+        // 将终点都连接到中心点
+        [path addLineToPoint:centerPoint];
+        
+        
+        [[self randomColor] set];
+        
+        [path fill];
+        
+    }
+    
+}
+
+//随机颜色
+- (UIColor *)randomColor{
+    
+    CGFloat r = arc4random_uniform(256) / 255.0;
+    CGFloat g = arc4random_uniform(256) / 255.0;
+    CGFloat b = arc4random_uniform(256) / 255.0;
+    
+    //根据RGB值,返回一个颜色,RGB颜色取值范围是0-255.
+    //它的RGB数值取值范围是0-1.
+    //alpha:透明度
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
 
