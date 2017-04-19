@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A97D0E51EA605EF00E7C205 /* 添加水印（生成一个image）.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "添加水印（生成一个image）.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A97D0E51EA605EF00E7C205 /* UIImage分类.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIImage分类.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A97D0E91EA605EF00E7C205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A97D0EB1EA605EF00E7C205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A97D0EC1EA605EF00E7C205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		4A97D0E61EA605EF00E7C205 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A97D0E51EA605EF00E7C205 /* 添加水印（生成一个image）.app */,
+				4A97D0E51EA605EF00E7C205 /* UIImage分类.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4A97D0E41EA605EF00E7C205 /* 添加水印（生成一个image） */ = {
+		4A97D0E41EA605EF00E7C205 /* UIImage分类 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A97D0FC1EA605EF00E7C205 /* Build configuration list for PBXNativeTarget "添加水印（生成一个image）" */;
+			buildConfigurationList = 4A97D0FC1EA605EF00E7C205 /* Build configuration list for PBXNativeTarget "UIImage分类" */;
 			buildPhases = (
 				4A97D0E11EA605EF00E7C205 /* Sources */,
 				4A97D0E21EA605EF00E7C205 /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = "添加水印（生成一个image）";
+			name = "UIImage分类";
 			productName = "添加水印（生成一个image）";
-			productReference = 4A97D0E51EA605EF00E7C205 /* 添加水印（生成一个image）.app */;
+			productReference = 4A97D0E51EA605EF00E7C205 /* UIImage分类.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -120,7 +120,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4A97D0E01EA605EF00E7C205 /* Build configuration list for PBXProject "添加水印（生成一个image）" */;
+			buildConfigurationList = 4A97D0E01EA605EF00E7C205 /* Build configuration list for PBXProject "UIImage分类" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -133,7 +133,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4A97D0E41EA605EF00E7C205 /* 添加水印（生成一个image） */,
+				4A97D0E41EA605EF00E7C205 /* UIImage分类 */,
 			);
 		};
 /* End PBXProject section */
@@ -300,7 +300,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4A97D0E01EA605EF00E7C205 /* Build configuration list for PBXProject "添加水印（生成一个image）" */ = {
+		4A97D0E01EA605EF00E7C205 /* Build configuration list for PBXProject "UIImage分类" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A97D0FA1EA605EF00E7C205 /* Debug */,
@@ -309,13 +309,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A97D0FC1EA605EF00E7C205 /* Build configuration list for PBXNativeTarget "添加水印（生成一个image）" */ = {
+		4A97D0FC1EA605EF00E7C205 /* Build configuration list for PBXNativeTarget "UIImage分类" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A97D0FD1EA605EF00E7C205 /* Debug */,
 				4A97D0FE1EA605EF00E7C205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

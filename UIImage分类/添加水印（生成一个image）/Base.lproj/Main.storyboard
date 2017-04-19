@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-PP-uah">
-                                <rect key="frame" x="38" y="184" width="300" height="300"/>
+                                <rect key="frame" x="38" y="209" width="300" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="0wT-oj-Wkr"/>
-                                    <constraint firstAttribute="height" constant="300" id="jju-3P-j1R"/>
+                                    <constraint firstAttribute="height" constant="250" id="jju-3P-j1R"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="d4h-PP-uah" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NdH-Zj-MAc"/>
                             <constraint firstItem="d4h-PP-uah" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="drY-dd-ImR"/>
