@@ -12,7 +12,8 @@
 
 static NSString *_str = @"@故事的小黄花";
 
-// 整个水印
+#pragma mark -
+#pragma mark - 加水印
 + (UIImage *)imageWaterMarkWithImage:(UIImage *)image {
     
     // 1创建一个位图上下文.
@@ -37,7 +38,9 @@ static NSString *_str = @"@故事的小黄花";
     return newImage;
 }
 
-// 将图片正常圆形图片
+#pragma mark -
+#pragma mark - 将图片剪切成：圆形图片、带边框的圆形图片、带边框的矩形图片、圆角图片
+// 圆形图片
 + (UIImage *)imageClipRoundWithImage:(UIImage *)image {
     
     //1开启一个和图片一样大小的位图上下文
@@ -55,7 +58,7 @@ static NSString *_str = @"@故事的小黄花";
     return newImage;
 }
 
-// 将图片转成带边框的圆形图片
+// 带边框的圆形图片
 + (UIImage *)imageClipRoundWithImage:(UIImage *)image borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor {
     
     CGFloat borderW = borderWidth;
@@ -85,7 +88,7 @@ static NSString *_str = @"@故事的小黄花";
     return newImage;
 }
 
-// 将图片转成带边框的矩形图片
+// 带边框的矩形图片
 + (UIImage *)imageRoundedRectWithImage:(UIImage *)image borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor cornerRadius:(CGFloat)cornerRadius {
     
     //1开启一个和图片一样大小的位图上下文
@@ -113,7 +116,7 @@ static NSString *_str = @"@故事的小黄花";
     return newImage;
 }
 
-// 将图片改成圆角图片
+// 圆角图片
 + (UIImage *)imageRoundedRectWithImage:(UIImage *)image cornerRadius:(CGFloat)cornerRadius {
     
     //1开启一个和图片一样大小的位图上下文
@@ -132,6 +135,82 @@ static NSString *_str = @"@故事的小黄花";
     
     return newImage;
 }
+
+#pragma mark -
+#pragma mark - 截图
+// 将View区域截图
++ (UIImage *)imageRenderImageWithView:(UIView *)view {
+    
+    if ([view isKindOfClass:[UIScrollView class]]) {
+        
+        UIScrollView *scrollView = (UIScrollView *)view;
+        
+        // 保存scrollView的基本属性
+        CGRect saveFrame = scrollView.frame;
+        CGPoint saveOrigin = scrollView.contentOffset;
+        
+        scrollView.frame = CGRectMake(0, scrollView.frame.origin.y, scrollView.contentSize.width, scrollView.contentSize.height);
+        
+        
+        // 开启位图上下层
+        UIGraphicsBeginImageContext(scrollView.contentSize);
+        
+        // 获取位图上下层
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        
+        // 将tableView渲染到上下层中
+        [scrollView.layer renderInContext:ctx];
+        
+        // 从上下层中获取图片
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        scrollView.frame = saveFrame;
+        scrollView.contentOffset = saveOrigin;
+        
+        return image;
+        
+    } else {
+        
+        // 开启位图上下层
+        UIGraphicsBeginImageContext(view.frame.size);
+        
+        // 获取位图上下层
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        
+        // 将tableView渲染到上下层中
+        [view.layer renderInContext:ctx];
+        
+        // 从上下层中获取图片
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        return image;
+    }
+}
+
+// 将View区域截图，并且返回NSData（RNG）
++ (NSData *)imageRenderRNGWithView:(UIView *)view {
+    
+    // 获取截图
+    UIImage *image = [self imageRenderImageWithView:view];
+    
+    // 将image转成NSData
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    return imageData;
+}
+
+// 将View区域截图，并且返回NSData（JPEG）
++ (NSData *)imageRenderJPEGWithView:(UIView *)view compressionQuality:(CGFloat)compressionQuality {
+    
+    // 获取截图
+    UIImage *image = [self imageRenderImageWithView:view];
+    
+    // 将image转成NSData
+    NSData *imageData = UIImageJPEGRepresentation(image, compressionQuality);
+    
+    return imageData;
+}
+
 
 
 @end
